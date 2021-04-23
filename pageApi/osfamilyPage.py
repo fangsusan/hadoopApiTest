@@ -16,7 +16,6 @@ class osfamilyPage(Api):
         r = requests.put(f"{self.url()}/api/osfamilys/",json=data)
         return r.json()
 
-
     def getOsFamilyCount(self,family):
         """根据条件获取系统类型总数"""
         data = {
