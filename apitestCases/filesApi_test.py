@@ -35,10 +35,8 @@ class TestFiles:
         file = "C:\Users\admin\Desktop\Wit_1.3_CentOS133"
         name = "fang001"
         type = "zip"
-
         result = self.filePage.uploadFile(file=file,name=name,type=type)
         assert result['status'] == 200
-
 
     @pytest.mark.parametrize("pageNum,pageSize",[(1,1)])
     def test_queryFilesPage(self,pageNum, pageSize):
