@@ -1,7 +1,6 @@
 import pytest
 from pageApi.osfamilyPage import osfamilyPage
 
-
 class TestosFamilyApi:
     def setup(self):
         self.osfamilyPage = osfamilyPage()
