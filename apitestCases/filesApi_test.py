@@ -17,7 +17,7 @@ class TestFiles:
         assert result['status'] == 200
 
     def test_queryFiles(self):
-        """根据条件获取文件   正例"""
+        """根据条件获取文件   rte正例"""
         result = self.filePage.queryFiles(name= self.name)
         print(result)
         assert result["status"] == 200
