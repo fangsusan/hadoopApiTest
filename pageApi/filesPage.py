@@ -39,7 +39,6 @@ class filePage(Api):
     def queryFilesPage(self,pageNum,pageSize,**kwargs ):
         """根据条件获取文件列表"""
         data = {
-
         }
         data.update(**kwargs)
         r = requests.post(f"{self.url()}/api/files/page/{pageNum}/{pageSize}", json=data)

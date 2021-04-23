@@ -9,7 +9,6 @@ class TestFiles:
         self.filePage = filePage()
         self.name = "Wit_1.3_CentOS133.zip"
 
-
     def test_getFiles(self):
         """ 获取所有文件接口 正例 """
         result = self.filePage.getFiles()
@@ -17,7 +16,7 @@ class TestFiles:
         assert result['status'] == 200
 
     def test_queryFiles(self):
-        """根据条件获取文件   rte正例"""
+        """根据条件获取文件   正例"""
         result = self.filePage.queryFiles(name= self.name)
         print(result)
         assert result["status"] == 200
@@ -32,7 +31,7 @@ class TestFiles:
 
     def test_uploadFile(self):
         """ 上传文件zip   正例 """
-        file = "C:\Users\admin\Desktop\Wit_1.3_CentOS133"
+        # file = "C:\Users\admin\Desktop\Wit_1.3_CentOS133"
         name = "fang001"
         type = "zip"
         result = self.filePage.uploadFile(file=file,name=name,type=type)
