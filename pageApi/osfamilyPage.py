@@ -1,6 +1,7 @@
 import requests
 from Api import Api
 
+
 class osfamilyPage(Api):
 
     def getOsFamilys(self):
