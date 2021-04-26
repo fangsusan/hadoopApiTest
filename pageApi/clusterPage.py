@@ -17,7 +17,6 @@ class clusterPage(Api):
         r =requests.put(f"{self.url()}/api/clusters/",json=data)
         return r.json()
 
-
     def getClusterComponentsPage(self,pageNum,pageSize):
         """ 获取集群服务组件 post"""
         data = {
