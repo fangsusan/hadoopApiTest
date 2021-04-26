@@ -2,7 +2,6 @@ import pytest
 
 from pageApi.stackPage import StackPage
 
-
 class TestStack:
 
     def setup(self):
