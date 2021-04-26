@@ -7,10 +7,9 @@ class ResourcePage(Api):
         r = requests.get(f'{self.url()}/api/resources/')
         return r.json()
 
-    def queryResources(self,id,name,**kwargs):
+    def queryResources(self,name,**kwargs):
         """根据条件获取资源列表"""
         data = {
-            "id":id,
             "name":name
         }
         data.update(kwargs)
@@ -18,11 +17,10 @@ class ResourcePage(Api):
         return r.json()
 
 
-    def addResource(self,id,name,**kwargs):
+    def addResource(self,name,**kwargs):
         """添加资源 """
 
         data = {
-            "id": id,
             "name": name
         }
         data.update(kwargs)
@@ -42,7 +40,6 @@ class ResourcePage(Api):
     def queryResourcesPage(self,pageNum,pageSize):
         """根据条件获取一页资源"""
         data = {
-
         }
         r = requests.post(f'{self.url()}/api/resources/page/{pageNum}/{pageSize}',json=data)
         return r.json()
