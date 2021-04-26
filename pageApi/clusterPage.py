@@ -7,6 +7,7 @@ class clusterPage(Api):
         r = requests.get(f'{self.url()}/api/clusters/')
         return r.json()
 
+
     def addCluster(self,name,stackId):
         """添加集群信息 """
         data = {
