@@ -1,0 +1,98 @@
+import pytest
+
+from pageApi.stackPage import StackPage
+
+
+class TestStack:
+
+    def setup(self):
+        self.StackPage = StackPage()
+
+    def teardown(self):
+        pass
+
+    def test_getStacks(self):
+        """获取所有技术栈接口"""
+        result = self.StackPage.getStacks()
+        print(result)
+        assert result["status"] == 200
+
+    @pytest.mark.parametrize("name,version",[("fang0006","1.2")])
+    def test_queryStacks(self,name,version):
+        """根据hostname获取技术栈列表 正例 """
+        result = self.StackPage.queryStacks(hostname=name,version=version)
+
+        print(result)
+        assert result["status"] == 200
+        # assert result["data"]["name"] == name
+
+    @pytest.mark.parametrize("name,version",[("fang0006","1.2")])
+    def test_addStack(self,name,version):
+        """添加技术栈   正例"""
+        result = self.StackPage.addStack(name=name,version=version)
+        print(result)
+        id = result['data']['id']
+        try:
+            self.StackPage.getStackByid(id=id)
+        finally:
+            self.StackPage.deleteStack(id=id)
+        assert result["status"] == 200
+
+    @pytest.mark.parametrize("id",[("40009538216144896")])
+    def test_queryStackCount(self,id):
+        """ 按条件id获取技术栈总数 正例"""
+
+        result = self.StackPage.queryStackCount(id=id)
+        assert result["status"] == 200
+        assert result['data'] != 0
+
+
+    @pytest.mark.parametrize("pageNum,pageSize,name",[(1,5,"fang0002")])
+    def test_queryStacksPage(self,pageNum,pageSize,name):
+        """ 按page页码查询询技术栈总数    正例"""
+
+        result = self.StackPage.queryStacksPage(pageNum=pageNum,pageSize=pageSize,name=name)
+        print(result)
+        assert result["status"] == 200
+        assert result['data']['list'][0]["name"] == name
+
+    @pytest.mark.parametrize("id",[("40009538216144896")])
+    def test_getStackByid(self,id):
+        """ 按ID获取技术栈   正例"""
+
+        result = self.StackPage.getStackByid(id=id)
+        print(result)
+        assert result["status"] == 200
+        assert result['data']["id"] == id
+
+
+    @pytest.mark.parametrize("id,name",[("40009538216144896","fyj001")])
+    def test_updateStack(self,name,id):
+        """ 更新技术栈  正例"""
+
+        result = self.StackPage.updateStack(name=name,id=id)
+        print(result)
+        assert result["status"] == 200
+
+
+    @pytest.mark.parametrize("name,version",[("fang0006","1.2")])
+    def test_deleteStack(self,name,version):
+        """  根据id删除技术栈"""
+        try:
+            self.StackPage.queryStacks(hostname=name,version=version)
+        finally:
+            pre = self.StackPage.addStack(name=name,version=version)
+            id = pre['data']['id']
+
+        result = self.StackPage.deleteStack(id=id)
+        assert result["status"] == 200
+
+    @pytest.mark.parametrize("id", [("40009487595089920")])
+    def test_getStackDetaiByid(self,id):
+        """ 根据Id获取技术栈详情"""
+
+        result = self.StackPage.getStackDetaiByid(id=id)
+        assert result["status"] == 200
+
+
+
