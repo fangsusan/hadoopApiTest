@@ -18,7 +18,6 @@ class TackPage(Api):
         r = requests.put(f"{self.url()}/api/racks/",json=data)
         return r.json()
 
-
     def getRackCount(self,name):
         """根据条件获取站点总数"""
         data = {

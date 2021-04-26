@@ -12,8 +12,6 @@ class TestStack:
         result = self.TackPage.getRacks()
         assert result['status'] == 200
 
-
-
     @pytest.mark.parametrize("siteId,name",[("123455","meilanzi001")])
     def test_addRacks(self,siteId,name):
         """添加机架 siteId,name 必填  正例"""
