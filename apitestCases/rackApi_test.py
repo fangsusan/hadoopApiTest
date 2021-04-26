@@ -1,7 +1,6 @@
 import pytest
 from pageApi.rackPage import RackPage
 
-
 class TestStack:
     def setup(self):
         self.RackPage = RackPage()
