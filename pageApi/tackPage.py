@@ -41,7 +41,7 @@ class TackPage(Api):
         return r.json()
 
     def queryRacks(self,name):
-        """"根据条件获取机架列表(模糊查询) """
+        """根据条件获取机架列表(模糊查询) """
         data = {
             "name": name
         }
@@ -49,12 +49,12 @@ class TackPage(Api):
         return r.json()
 
     def getRackById(self,id):
-        """"根据ID获取机架 """
+        """根据ID获取机架 """
         r = requests.get(f"{self.url()}/api/racks/{id}")
         return r.json()
 
     def updaterack(self,name,id):
-        """"更新机架 """
+        """更新机架 """
         data = {
             "name": name
         }
@@ -62,6 +62,6 @@ class TackPage(Api):
         return r.json()
 
     def deleteRack(self,id):
-        """"删除机架 """
+        """删除机架 """
         r = requests.delete(f"{self.url()}/api/racks/{id}")
         return r.json()
