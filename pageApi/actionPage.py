@@ -21,7 +21,7 @@ class ActionPage(Api):
 
         }
         data.update(kwargs)
-        r = requests.put(f'{self.url()}/api/actions/page/{pageNum}/{pageSize}', json=data)
+        r = requests.post(f'{self.url()}/api/actions/page/{pageNum}/{pageSize}', json=data)
         return r.json()
 
     def queryActions(self,name,**kwargs):
@@ -30,7 +30,7 @@ class ActionPage(Api):
                 "name":name
         }
         data.update(kwargs)
-        r = requests.put(f'{self.url()}/api/actions/querise', json=data)
+        r = requests.post(f'{self.url()}/api/actions/querise', json=data)
         return r.json()
 
     def queryStagesPage(self,pageNum,pageSize):
@@ -78,10 +78,11 @@ class ActionPage(Api):
         r = requests.get(f'{self.url()}/api/actions/tasks/{taskId}')
         return r.json()
 
-    def updateTask(self,taskId):
+    def updateTask(self,taskId,name,status):
         """更新行为信息"""
         data = {
-
+            "name":name,
+            "status":status,
         }
         r = requests.post(f'{self.url()}/api/actions/tasks/{taskId}',json=data)
         return r.json()
