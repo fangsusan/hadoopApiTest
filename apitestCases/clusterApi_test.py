@@ -108,7 +108,6 @@ class Testcluster:
         print(result)
         assert result['status'] == 200
 
-
     # @pytest.mark.parametrize("clusterId,serviceId)",[("35358245971300352","35400276559007744")])
     # def test_getClusterServiceConfig(self,clusterId,serviceId):
     #     """ 获取集群主机指定服务组件的配置列表 正例"""

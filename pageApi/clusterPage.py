@@ -1,7 +1,6 @@
 import requests
 from Api import Api
 
-
 class clusterPage(Api):
     def getClusters(self):
         """ 获取所有集群信息 """
