@@ -2,7 +2,7 @@ import requests
 
 from Api import Api
 
-class TackPage(Api):
+class RackPage(Api):
 
     def getRacks(self):
         """获取所有站点"""
