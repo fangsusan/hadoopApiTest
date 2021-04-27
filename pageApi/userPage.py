@@ -42,10 +42,10 @@ class userPage(Api):
         r = requests.get(f"{self.url()}/api/user/{id}")
         return r.json()
 
-    def updateUser(self,id,**kwargs):
+    def updateUser(self,id,name,**kwargs):
         """更新用户信息 """
         data = {
-
+                "name":name
         }
         data.update(kwargs)
         r = requests.post(f"{self.url()}/api/user/{id}",json=data)
