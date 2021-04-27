@@ -56,7 +56,6 @@ class userPage(Api):
         r =requests.delete(f"{self.url()}/api/user/{id}")
         return r.json()
 
-
     def delete(self,userId,password,salt,username,**kwargs):
         """批量添加用户角色"""
         data = {
