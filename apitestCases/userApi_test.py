@@ -68,6 +68,7 @@ class Testuser:
         assert result['status'] == 200
         assert result['data']['name'] == name
 
+
     @pytest.mark.parametrize("username,salt,password,pageSize,pageNum", [("meilanfyj", "meilnew","1987654",1,10)])
     def test_deleteUser(self,username,salt,password,pageSize,pageNum):
         """ 删除用户信息 正例"""
