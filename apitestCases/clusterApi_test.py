@@ -1,7 +1,5 @@
 import pytest
-
 from pageApi.clusterPage import clusterPage
-
 
 class Testcluster:
     def setup(self):
@@ -61,15 +59,12 @@ class Testcluster:
         assert result['status'] == 200
         assert result['data'] != 0
 
-
     @pytest.mark.parametrize("name", [("DATANODE")])
     def test_getClusterByName(self,name):
         """ 根据名称name获取集群主机 正例"""
         result = self.clusterPage.getClusterByName(name=name)
         print(result)
         assert result['status'] == 200
-
-
 
     @pytest.mark.parametrize("pageNum,pageSize", [(1,1)])
     def test_queryClusterPage(self,pageNum,pageSize):
