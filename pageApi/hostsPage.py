@@ -24,7 +24,7 @@ class HostsPage(Api):
 
     def addClusterHosts(self):
         """批量添加集群主机"""
-        pass
+
 
     def deleteClusterHosts(self):
         """批量删除集群主机"""

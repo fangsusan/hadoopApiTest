@@ -77,7 +77,6 @@ class Testuser:
             pre = self.userPage.insert(password=password,salt=salt,username=username)
             print(pre)
             id = pre['data']['id']
-            print(id)
             print(pre['data']['salt'])
         result = self.userPage.deleteUser(id=id)
         assert result['status'] == 200

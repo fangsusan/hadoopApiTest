@@ -86,11 +86,12 @@ class TestStack:
         result = self.StackPage.deleteStack(id=id)
         assert result["status"] == 200
 
-    @pytest.mark.parametrize("id", [("40009487595089920")])
+    @pytest.mark.parametrize("id", [("42660646243811328")])
     def test_getStackDetaiByid(self,id):
         """ 根据Id获取技术栈详情"""
 
         result = self.StackPage.getStackDetaiByid(id=id)
+        print(result)
         assert result["status"] == 200
 
 

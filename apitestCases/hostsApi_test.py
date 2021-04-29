@@ -54,7 +54,7 @@ class TestHosts:
         print(r)
         assert r["status"] == 200
 
-       # """ 更新接口：业务不容许更改"""
+
     @pytest.mark.parametrize("hostname,clusterId,osId,osVer,rackId,siteId",
                              [("meilanzi900","10000","100001","1.2","101","100")])
     def test_updataHost(self,hostname,clusterId,osId,osVer,rackId,siteId):
