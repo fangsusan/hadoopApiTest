@@ -12,6 +12,7 @@ class TestStack:
     def teardown(self):
         pass
 
+
     @allure.story("获取所有技术栈 Api")
     def test_getStacks(self):
         """获取所有技术栈接口"""
