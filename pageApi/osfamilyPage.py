@@ -1,7 +1,7 @@
 import requests
 from Api import Api
 class osfamilyPage(Api):
-
+    """ 操作系统类型管理接口 """
     def getOsFamilys(self):
         """获取所有系统类型"""
         r = requests.get(f"{self.url()}/api/osfamilys/")
