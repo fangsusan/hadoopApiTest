@@ -82,7 +82,7 @@ class Testorganization:
         assert result['status'] == 200
         assert result['data'] != 0
 
-
+    @allure.story('更新组织信息Api')
     @pytest.mark.parametrize("name,id",[("fy22j","47699012110798848")])
     def test_updateOrganization(self,name,id):
         """ 更新组织信息 正例 """
@@ -90,6 +90,7 @@ class Testorganization:
         print(result)
         assert result['status'] == 200
 
+    @allure.story('删除组织信息Api')
     @pytest.mark.parametrize("name",[("fy22j11")])
     def test_deleteOrganization(self,name):
         """删除组织信息 """
@@ -101,7 +102,7 @@ class Testorganization:
             result = self.organizationPage.deleteOrganization(id=id)
         assert result['status'] == 200
 
-
+    @allure.story('添加一个组织用户Api')
     @pytest.mark.parametrize("organizationId,userId",[(47699097032871936,47697031921160192)])
     def test_insertUser(self,organizationId,userId):
         """ 添加一个组织用户 """
@@ -112,6 +113,8 @@ class Testorganization:
         print(result)
         assert result['status'] == 200
 
+
+    @allure.story('删除一个组织用户Api')
     @pytest.mark.parametrize("organizationId,userId",[(47699097032871936,47697031921160192)])
     def test_deleteUser(self,organizationId,userId):
         """ 删除一个组织用户 """
@@ -121,6 +124,8 @@ class Testorganization:
             result = self.organizationPage.deleteUser(organizationId=organizationId,userId=userId)
         assert result['status'] == 200
 
+
+    @allure.story('删除组织下的一批用户Api')
     def test_batchDeleteUser(self):
         """ 删除组织下的一批用户 """
         organizationId = 47699097032871936
@@ -131,6 +136,7 @@ class Testorganization:
             result = self.organizationPage.batchDeleteUser(organizationId=organizationId, userIds=userIds)
         assert result['status'] == 200
 
+    @allure.story('批量添加组织用户Api')
     def test_batchInsertUser(self):
         """ 批量添加组织用户 """
         organizationId = 47699097032871936
@@ -141,6 +147,8 @@ class Testorganization:
             self.organizationPage.batchDeleteUser(organizationId=organizationId, userIds=userIds)
         assert result['status'] == 200
 
+
+    @allure.story('删除组织下的所有用户Api')
     @pytest.mark.parametrize("organizationId,userId",[(47694498385383424,47697031921160192)])
     def test_deleteAllUser(self,organizationId,userId):
         """删除组织下的所有用户 """
