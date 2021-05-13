@@ -34,15 +34,20 @@ class rolePage(Api):
         r = requests.get(f"{self.url()}/api/role/page/{pageSize}/{pageNum}")
         return r.json()
 
+    def getUsers(self,roleId):
+        """ 获取角色所有用户"""
+        r = requests.get(f"{self.url()}/api/role/users/{roleId}")
+        return r.json()
+
     def getRole(self,id):
         """ 获取角色信息"""
         r = requests.get(f"{self.url()}/api/role/{id}")
         return r.json()
 
-    def updateRole(self,id):
+    def updateRole(self,id,name):
         """ 更新角色信息 """
         data = {
-
+            "name":name
         }
         r = requests.post(f"{self.url()}/api/role/{id}",json=data)
         return r.json()
@@ -52,15 +57,20 @@ class rolePage(Api):
         r = requests.delete(f"{self.url()}/api/role/{id}")
         return r.json()
 
+    def getPermissions(self,roleId):
+        """ 获取角色所有权限"""
+        r = requests.get(f"{self.url()}/api/role/{roleId}/permission")
+        return r.json()
+
+
     def batchDeletePermission(self,permissionIds,roleId):
         """ 删除角色下的一批权限 """
-
-        r = requests.post(f"{self.url()}/api/role/{roleId}/permission")
+        r = requests.post(f"{self.url()}/api/role/{roleId}/permission",json=permissionIds)
         return r.json()
 
     def batchInsertPermission(self,permissionIds,roleId):
         """批量添加角色权限 """
-        r = requests.put(f"{self.url()}/api/role/{roleId}/permission")
+        r = requests.put(f"{self.url()}/api/role/{roleId}/permission",json=permissionIds)
         return r.json()
 
     def deleteAllPermission(self,roleId):
@@ -82,18 +92,12 @@ class rolePage(Api):
     def batchDeleteUser(self,roleId,userIds):
 
         """删除角色下的一批用户 """
-        data = {
-            "userIds":userIds
-        }
-        r = requests.post(f"{self.url()}/api/role/{roleId}/user",json=data)
+        r = requests.post(f"{self.url()}/api/role/{roleId}/user",json=userIds)
         return r.json()
 
     def batchInsertUser(self,roleId,userIds):
         """批量添加角色用户 """
-        data = {
-            "userIds": userIds
-        }
-        r = requests.post(f"{self.url()}/api/role/{roleId}/user", json=data)
+        r = requests.post(f"{self.url()}/api/role/{roleId}/user", json=userIds)
         return r.json()
 
     def deleteAllUser(self,roleId):
