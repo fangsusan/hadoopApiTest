@@ -6,6 +6,11 @@ from Api import Api
 class systemResourcePage(Api):
     """ WitServer系统资源管理接口"""
 
+    def getResources(self):
+        """ 获取所有资源 """
+        r = requests.get(f"{self.url()}/api/system/resource/")
+        return r.json()
+
     def insertSystemresource(self,name,**kwargs):
         """ 添加系统资源信息"""
         data = {
