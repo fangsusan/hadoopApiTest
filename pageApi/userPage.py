@@ -1,3 +1,4 @@
+import allure
 import requests
 
 from Api import Api
@@ -8,7 +9,7 @@ class userPage(Api):
 
     def getUsers(self):
         """获取所有用户 """
-        r = requests.get(f"{self.url()}/api/user")
+        r = requests.get(f"{self.url()}/api/user/")
         return r.json()
 
     def insert(self,password,salt,username,**kwargs):
@@ -52,10 +53,11 @@ class userPage(Api):
         r = requests.get(f"{self.url()}/api/user/{id}")
         return r.json()
 
-    def updateUser(self,id,name,**kwargs):
+    def updateUser(self,id,name,password,**kwargs):
         """更新用户信息 """
         data = {
-                "name":name
+                "name":name,
+            "password":password
         }
         data.update(kwargs)
         r = requests.post(f"{self.url()}/api/user/{id}",json=data)
