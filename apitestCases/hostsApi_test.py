@@ -35,7 +35,6 @@ class TestHosts:
             self.HostsPage.deleteHost(id=id)
         assert result["data"]["hostname"] == hostname
         assert result["status"] == 200
-
     @allure.story("批量添加集群主机 Api")
     def test_addClusterHosts(self):
         """批量添加集群主机"""
