@@ -2,6 +2,7 @@ from Api import Api
 import requests
 
 class ActionPage(Api):
+    """ 行为管理接口 """
     def getActions(self):
         """获取所有行为信息"""
         r = requests.get(f'{self.url()}/api/actions/')
@@ -85,6 +86,20 @@ class ActionPage(Api):
             "status":status,
         }
         r = requests.post(f'{self.url()}/api/actions/tasks/{taskId}',json=data)
+        return r.json()
+
+    def testActionTaskResponse(self,):
+        """测试Task返回结果"""
+        taskConsumerDTO = {
+                          "id": 0,
+                          "result": {
+                            "info": "string",
+                            "message": "string",
+                            "status": 0
+                          },
+                          "type": "string"
+                        }
+        r = requests.post(f"{self.url()}/api/actions/test",json=taskConsumerDTO)
         return r.json()
 
     def getActionById(self, taskId):
