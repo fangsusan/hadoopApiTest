@@ -54,7 +54,6 @@ class TestFiles:
         """上传文件内容 """
         pass
 
-
     @allure.story("根据条件获取文件列表 Api")
     @pytest.mark.parametrize("pageNum,pageSize",[(1,1)])
     def test_queryFilesPage(self,pageNum, pageSize):
