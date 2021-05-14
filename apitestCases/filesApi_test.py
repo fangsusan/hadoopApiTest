@@ -4,16 +4,17 @@ from pageApi.filesPage import filePage
 
 
 class TestFiles:
-
+    """ 文件管理接口 """
     def setup(self):
         self.filePage = filePage()
-        self.name = "Wit_1.3_CentOS133.zip"
+        self.name = "Wit_1.3_CentOS001.zip"
 
     def test_getFiles(self):
         """ 获取所有文件接口 正例 """
         result = self.filePage.getFiles()
         print(result)
         assert result['status'] == 200
+
 
     def test_queryFiles(self):
         """根据条件获取文件   正例"""
@@ -44,18 +45,18 @@ class TestFiles:
         print(result)
         assert result['status'] == 200
 
-    @pytest.mark.parametrize("id",[("39649245812240384")])
+    @pytest.mark.parametrize("id",[("45560809509638144")])
     def test_getFileById(self,id):
         result = self.filePage.getFileById(id=id)
         assert result['status'] == 200
-        assert result['data']['id'] == id
+        # assert result['data']['id'] == id
 
-
+    @pytest.mark.parametrize("id",[("45560809509638144")])
     def test_deleteFile(self,id):
 
         result = self.filePage.deleteFile(id=id)
         assert result['status'] == 200
-        assert result['data']['id'] == id
+
 
 
 

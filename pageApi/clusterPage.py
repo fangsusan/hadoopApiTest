@@ -2,6 +2,7 @@ import requests
 from Api import Api
 
 class clusterPage(Api):
+    """ 集群信息管理接口"""
     def getClusters(self):
         """ 获取所有集群信息 """
         r = requests.get(f'{self.url()}/api/clusters/')
@@ -15,6 +16,12 @@ class clusterPage(Api):
         }
         r =requests.put(f"{self.url()}/api/clusters/",json=data)
         return r.json()
+
+    def startClusterComponent(self,clusterId,componentId,state):
+        """启动/停止/重启集群服务组件 """
+        r = requests.get(f"{self.url()}/api/clusters/components/action/{clusterId}/{componentId}/{state}")
+        return r.json()
+
 
     def getClusterComponentsPage(self,pageNum,pageSize):
         """ 获取集群服务组件 post"""
@@ -61,12 +68,9 @@ class clusterPage(Api):
         r = requests.get(f"{self.url()}/api/clusters/services/install/{clusterId}/{serviceId}")
         return r.json()
 
-    def installClusterService(self, clusterId, serviceId):
+    def installClusterService(self,clusterId,serviceId):
         """ 安装集群服务组件 """
-        data = {
-
-        }
-        r = requests.put(f"{self.url()}/api/clusters/services/install/{clusterId}/{serviceId}",json=data)
+        r = requests.get(f"{self.url()}/api/clusters/services/install/{clusterId}/{serviceId}")
         return r.json()
 
     def getClusterServices(self,clusterId):
@@ -84,12 +88,9 @@ class clusterPage(Api):
         r = requests.delete(f"{self.url()}/api/clusters/services/{clusterId}/{serviceId}")
         return r.json()
 
-    def addClusterServices(self, clusterId, stackId):
-        """ 删除集群服务 """
-        data = {
-
-        }
-        r = requests.put(f"{self.url()}/api/clusters/services/{clusterId}/{stackId}",json=data)
+    def addClusterServices(self,clusterId,stackId,services):
+        """ 批量添加集群服务 """
+        r = requests.put(f"{self.url()}/api/clusters/services/{clusterId}/{stackId}",json=services)
         return r.json()
 
     def getClusterById(self, id):

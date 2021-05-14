@@ -2,7 +2,7 @@ import requests
 from Api import Api
 
 class filePage(Api):
-
+    """文件管理接口"""
     def getFiles(self):
         """获取所有文件接口"""
         r = requests.get(f"{self.url()}/api/files/")
@@ -26,6 +26,11 @@ class filePage(Api):
         r = requests.post(f"{self.url()}/api/files/count/", json=data)
         return r.json()
 
+    def getFileDataById(self):
+        """ 根据ID获取文件内容"""
+        r = requests.get(f"{self.url()}/api/files/data/{id}")
+        return r.json()
+
     def uploadFile(self,file,name,type):
         """ 上传文件"""
         data = {
@@ -34,6 +39,15 @@ class filePage(Api):
             "type":type
         }
         r = requests.post(f"{self.url()}/api/files/files/", json=data)
+        return r.json()
+
+    def uploadFileContent(self,file,name,type):
+        data = {
+            "file": file,
+            "name": name,
+            "type": type
+        }
+        r = requests.post(f"{self.url()}/api/files/files/content",json=data)
         return r.json()
 
     def queryFilesPage(self,pageNum,pageSize,**kwargs ):
