@@ -2,6 +2,7 @@ from Api import Api
 import requests
 
 class ResourcePage(Api):
+    """ 资源管理接口"""
     def getResources(self):
         """根据获取所有资源"""
         r = requests.get(f'{self.url()}/api/resources/')
@@ -19,7 +20,6 @@ class ResourcePage(Api):
 
     def addResource(self,name,**kwargs):
         """添加资源 """
-
         data = {
             "name": name
         }
@@ -32,7 +32,6 @@ class ResourcePage(Api):
         data = {
             "name": name
         }
-
         r = requests.post(f'{self.url()}/api/resources/count', json=data)
         return r.json()
 
