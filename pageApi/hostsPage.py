@@ -2,6 +2,7 @@ from Api import Api
 import requests
 
 class HostsPage(Api):
+    """ 主机管理接口"""
 
     def gethosts(self):
         """ 获取所有主机 """
@@ -22,13 +23,16 @@ class HostsPage(Api):
         r = requests.put(f"{self.url()}/api/hosts/",json=data)
         return r.json()
 
-    def addClusterHosts(self):
+    def addClusterHosts(self,clusterId,hostsIds):
         """批量添加集群主机"""
+        r = requests.put(f"{self.url()}/api/hosts/cluster/{clusterId}",json=hostsIds)
+        return r.json()
 
 
-    def deleteClusterHosts(self):
+    def deleteClusterHosts(self,clusterId,hostsIds):
         """批量删除集群主机"""
-        pass
+        r = requests.delete(f"{self.url()}/api/hosts/cluster/{clusterId}", json=hostsIds)
+        return r.json()
 
     def getHostCount(self,name):
         """根据条件获取主机总数"""
@@ -38,9 +42,9 @@ class HostsPage(Api):
         r = requests.post(f"{self.url()}//api/hosts/count",json=data)
         return r.json()
 
-    def getHostByHostname(self,name):
+    def getHostByHostname(self,hostname):
         """根据名称获取主机"""
-        result = requests.get(f"{self.url()}/api/hosts/hostname/{name}")
+        result = requests.get(f"{self.url()}/api/hosts/hostname/{hostname}")
         return result.json()
 
     def queryhostPage(self,hostname,pageNum,pageSize):
@@ -51,7 +55,7 @@ class HostsPage(Api):
         r = requests.post(f"{self.url()}/api/hosts/page/{pageNum}/{pageSize}",json=data)
         return r.json()
 
-    def clusterIsNUll(self,hostname,pageNum,pageSize):
+    def getHostPageClusterIsNUll(self,hostname,pageNum,pageSize):
         """获取集群ID为空的主机"""
         data = {
             "hostname": hostname
