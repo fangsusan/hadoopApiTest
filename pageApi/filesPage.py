@@ -1,6 +1,7 @@
 import requests
 from Api import Api
 
+
 class filePage(Api):
     """文件管理接口"""
     def getFiles(self):
@@ -26,7 +27,7 @@ class filePage(Api):
         r = requests.post(f"{self.url()}/api/files/count/", json=data)
         return r.json()
 
-    def getFileDataById(self):
+    def getFileDataById(self,id):
         """ 根据ID获取文件内容"""
         r = requests.get(f"{self.url()}/api/files/data/{id}")
         return r.json()
@@ -42,6 +43,7 @@ class filePage(Api):
         return r.json()
 
     def uploadFileContent(self,file,name,type):
+        """上传文件内容 """
         data = {
             "file": file,
             "name": name,
