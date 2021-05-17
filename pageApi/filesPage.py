@@ -41,10 +41,8 @@ class filePage(Api):
         r = requests.post(f"{self.url()}/api/files/files",data,files=files)
         return r.json()
 
-
     def uploadFileContent(self,content):
         """上传文件内容 """
-
         data = {
             "content": content
         }
