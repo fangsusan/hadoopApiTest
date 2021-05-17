@@ -32,22 +32,21 @@ class filePage(Api):
         r = requests.get(f"{self.url()}/api/files/data/{id}")
         return r.json()
 
-    def uploadFile(self,file,name,type):
-        """ 上传文件"""
+    def uploadFile(self,files,name,type):
         data = {
-            "file": file,
+            "file":files,
             "name":name,
             "type":type
         }
-        r = requests.post(f"{self.url()}/api/files/files/", json=data)
+        r = requests.post(f"{self.url()}/api/files/files",data,files=files)
         return r.json()
 
-    def uploadFileContent(self,file,name,type):
+
+    def uploadFileContent(self,content):
         """上传文件内容 """
+
         data = {
-            "file": file,
-            "name": name,
-            "type": type
+            "content": content
         }
         r = requests.post(f"{self.url()}/api/files/files/content",json=data)
         return r.json()
