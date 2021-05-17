@@ -63,7 +63,7 @@ class Testuser:
         result = self.userPage.findByName(name=name,pageSize=pageSize,pageNum=pageNum)
         print(result)
         assert result['status'] == 200
-        assert result['data']['name'] ==name
+        assert result['data']['name'] == name
 
 
     @allure.story("获取用户所有组织 正例")
@@ -152,7 +152,6 @@ class Testuser:
         finally:
             result = self.userPage.deleteAllRole(userId=self.userId)
         assert result['status'] == 200
-
 
     @allure.story("添加一个用户角色 正例")
     def test_insertRole(self):
