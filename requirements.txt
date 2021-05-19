@@ -1,5 +1,6 @@
 allure-pytest
 pytest
+
 requests
 pytest-testconfig
 selenium
