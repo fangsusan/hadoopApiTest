@@ -1,7 +1,5 @@
 import allure
 import pytest
-import requests
-
 from pageApi.hostsPage import HostsPage
 
 @allure.feature("主机管理接口")
