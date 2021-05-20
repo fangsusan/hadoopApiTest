@@ -1,5 +1,5 @@
 import requests
-from Api import Api
+from common.Api import Api
 
 class clusterPage(Api):
     """ 集群信息管理接口"""

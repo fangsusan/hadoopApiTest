@@ -1,9 +1,7 @@
-import random
-
 import pytest
 import allure
 from pageApi.userPage import userPage
-from randomUserinfo import random_name, random_phone, random_password
+from common.randomUserinfo import random_name, random_phone, random_password
 
 
 @allure.feature('Witserver 用户管理接口模块 测试')
@@ -96,7 +94,6 @@ class Testuser:
             result = self.userPage.changePwd(username="fangy",password=random_password())
         finally:
             self.userPage.adminchangePwd(username="fangy",password="111111")
-
         print(result)
         assert result['status'] == 200
 

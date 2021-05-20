@@ -1,6 +1,6 @@
 import requests
 
-from Api import Api
+from common.Api import Api
 
 
 class systemResourcePage(Api):

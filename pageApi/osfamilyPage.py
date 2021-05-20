@@ -1,5 +1,5 @@
 import requests
-from Api import Api
+from common.Api import Api
 class osfamilyPage(Api):
     """ 操作系统类型管理接口 """
     def getOsFamilys(self):

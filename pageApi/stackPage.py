@@ -1,6 +1,5 @@
-import pytest
 import requests
-from Api import Api
+from common.Api import Api
 
 class StackPage(Api):
     def getStacks(self):

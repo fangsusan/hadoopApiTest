@@ -7,7 +7,7 @@ upload_res=requests.post(upload_url,upload_data,files=files,headers=header)##此
 
 import requests
 
-from Api import Api
+from common.Api import Api
 
 
 class Testre(Api):
