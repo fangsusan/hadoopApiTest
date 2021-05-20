@@ -1,10 +1,15 @@
+import random
+
 import pytest
 import allure
 from pageApi.userPage import userPage
+from randomUserinfo import random_name, random_phone, random_password
+
 
 @allure.feature('Witserver 用户管理接口模块 测试')
 class Testuser:
     """ WitServer 用户管理接口  测试"""
+
     def setup(self):
         self.userPage = userPage()
         self.userId = 46914125908955136
@@ -14,29 +19,31 @@ class Testuser:
     def teardown(self):
         self.userPage.batchDeleteRole(userId=self.userId, roleIds=self.roleIds)
 
+    @pytest.mark.parametrize("username,password",[("fangy",111111)])
+    def test_login(self,username,password):
+        """ 登录 正例"""
+        result = self.userPage.login(username=username,password=password)
+        assert result['data']['name'] == username
+
     @allure.story("获取所有用户 正例")
     def test_getUsers(self):
         """ 获取所有用户 正例"""
         result = self.userPage.getUsers()
+        print(result)
         assert result['status'] == 200
         assert result['data'] != 0
 
     @allure.story('添加用户信息 正例')
-    @pytest.mark.parametrize("password,salt,username,pageSize,pageNum",[("123789","salt","fyj001",1,10)])
-    def test_insert(self,password,salt,username,pageSize,pageNum):
-        """ 添加用户信息 正例"""
-        with allure.step('添加用户信息'):
-            result = self.userPage.insert(password=password,salt=salt,username=username)
-        id = result['data']['id']
-        with allure.step('检查是否存在，并删除'):
-
-            try:
-                self.userPage.findByName(name=username,pageSize=pageSize,pageNum=pageNum)
-            finally:
-                self.userPage.deleteUser(id=id)
-        with allure.step("校验结果"):
-            allure.attach('期望结果', '验证通过')
-            assert result['status'] == 200
+    def test_insert(self):
+        """ 添加用户信息admin登录 正例"""
+        name = random_name(8)
+        phone = random_phone(11)
+        email = "2222@qq.com"
+        password = random_password()
+        username = random_name(9)
+        result = self.userPage.insert(name=name,phone=phone, email=email, password=password, username=username)
+        print(result)
+        assert result['status'] == 200
 
 
     @allure.story("获取用户总数 正例")
@@ -53,18 +60,16 @@ class Testuser:
         result = self.userPage.countByName(name=name)
         print(result)
         assert result['status'] == 200
-        assert result['data'] != 0
 
 
     @allure.story("根据用户名称获取用户列表 正例")
-    @pytest.mark.parametrize("name,pageSize,pageNum", [("meilanzi",1,10)])
-    def test_findByName(self, name,pageSize,pageNum):
+    @pytest.mark.parametrize("name,pageSize,pageNum", [("fangy",1,10)])
+    def test_findByName(self,name,pageSize,pageNum):
         """ 根据用户名称获取用户列表 正例"""
         result = self.userPage.findByName(name=name,pageSize=pageSize,pageNum=pageNum)
         print(result)
         assert result['status'] == 200
-        assert result['data']['name'] == name
-
+        assert result['data']['list'][0]['name'] == name
 
     @allure.story("获取用户所有组织 正例")
     @pytest.mark.parametrize("userId",[(46914125908955136)])
@@ -84,6 +89,22 @@ class Testuser:
         print(result)
         assert result['status'] == 200
 
+    @allure.story("用户修改密码 正例")
+    def test_changePassword(self):
+        """ 修改密码 用户修改密码"""
+        try:
+            result = self.userPage.changePwd(username="fangy",password=random_password())
+        finally:
+            self.userPage.adminchangePwd(username="fangy",password="111111")
+
+        print(result)
+        assert result['status'] == 200
+
+    @allure.story("管理员修改其他用户密码 正例")
+    def test_changeOtherUserpwd(self):
+        """管理员修改其他用户密码 正例"""
+        result = self.userPage.adminchangePwd(username="fangy",password="111111")
+        assert result['status'] == 200
 
     @allure.story("获取用户信息 正例")
     @pytest.mark.parametrize("id",[("42172949280604160")])
@@ -94,28 +115,24 @@ class Testuser:
         assert result['status'] == 200
 
     @allure.story("更新用户信息 正例")
-    @pytest.mark.parametrize("id,name,password", [("42172949280604160","meilanzi new",123456)])
-    def test_updateUser(self,id,name,password):
+    # @pytest.mark.parametrize("id,realname,phone,email", [("50527843863515136","fangj",18768466308,"123456789@qq.com")])
+    def test_updateUser(self):
         """ 更新用户信息 正例"""
-        result = self.userPage.updateUser(id=id,name=name,password=password)
+        realname = random_name(8)
+        phone = random_phone(11)
+        email = "11111@qq.com"
+        id = 50527843863515136
+        result = self.userPage.updateUser(id=id,realname=realname,phone=phone,email=email)
         print(result)
         assert result['status'] == 200
 
-
-    @allure.story("删除用户信息 正例")
-    @pytest.mark.parametrize("username,salt,password,pageSize,pageNum", [("meilanfyj", "meilnew","1987654",1,10)])
-    def test_deleteUser(self,username,salt,password,pageSize,pageNum):
-        """ 删除用户信息 正例"""
-        try:
-            self.userPage.findByName(name=username,pageSize=pageSize,pageNum=pageNum)
-        finally:
-            pre = self.userPage.insert(password=password,salt=salt,username=username)
-            print(pre)
-            id = pre['data']['id']
-            print(pre['data']['salt'])
-        result = self.userPage.deleteUser(id=id)
+    @allure.story(" status：0禁用/ 1 启用用户 正例")
+    @pytest.mark.parametrize("id,status",[(50534537125449728,0),(50534537125449728,1)])
+    def test_changeUserStatus(self,id,status):
+        """ status：0禁用/ 1 启用用户 正例"""
+        result = self.userPage.changeUserStatus(id=id,status=status)
+        print(result)
         assert result['status'] == 200
-
 
     @allure.story("获取用户所有权限 正例")
     @pytest.mark.parametrize("userId",[(46914125908955136)])
@@ -159,7 +176,6 @@ class Testuser:
         result = self.userPage.insertRole(userId=self.userId,roleId=self.roleId)
         print(result)
         assert result['status'] == 200
-
 
     @allure.story("删除用户下的某个角色 正例")
     def test_deleteRole(self):
