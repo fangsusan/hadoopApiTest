@@ -98,8 +98,6 @@ class TestFiles:
             result = self.filePage.deleteFile(id=id)
         assert result['status'] == 200
 
-
-
     @allure.story("根据id下载文件 Api")
     def test_downloadFile(self):
         """根据id下载文件 正例 """

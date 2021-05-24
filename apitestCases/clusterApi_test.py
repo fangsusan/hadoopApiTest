@@ -5,11 +5,9 @@ from pageApi.clusterPage import clusterPage
 @allure.feature("集群信息管理接口")
 class Testcluster:
     """ 集群信息管理接口 """
+
     def setup(self):
         self.clusterPage = clusterPage()
-
-    def teardown(self):
-        pass
 
     @allure.story('获取所有集群信息 Api')
     def test_getClusters(self):

@@ -78,6 +78,7 @@ class organizationPage(Api):
         r = requests.post(f"{self.url()}/api/organization/{organizationId}/user",json=userIds)
         return r.json()
 
+
     def batchInsertUser(self,organizationId,userIds):
         """ 批量添加组织用户 """
         r = requests.put(f"{self.url()}/api/organization/{organizationId}/user", json=userIds)

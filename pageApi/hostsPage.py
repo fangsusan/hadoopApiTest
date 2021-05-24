@@ -1,4 +1,4 @@
-from Api import Api
+from common.Api import Api
 import requests
 
 class HostsPage(Api):
@@ -25,6 +25,7 @@ class HostsPage(Api):
 
     def addClusterHosts(self,clusterId,hostsIds):
         """批量添加集群主机"""
+
         r = requests.put(f"{self.url()}/api/hosts/cluster/{clusterId}",json=hostsIds)
         return r.json()
 
