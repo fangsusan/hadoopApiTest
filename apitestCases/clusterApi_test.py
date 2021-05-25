@@ -32,13 +32,13 @@ class Testcluster:
         assert result['data']['name'] == name
 
     @allure.story('启动/停止/重启集群服务组件 Api')
-    @pytest.mark.parametrize("clusterId,componentId,state",[("meilanzi002","39654636168163328",0)])
+    @pytest.mark.parametrize("clusterId,componentId,state",[("meilanzi002","39654636168163328",1)])
     def test_startClusterComponent(self,clusterId,componentId,state):
         """启动/停止/重启集群服务组件
          state值为：0,1,2
         """
         result = self.clusterPage.startClusterComponent(clusterId=clusterId,componentId=componentId,state=state)
-        assert result['status'] == 200
+        assert result['status'] == 400
 
 
     @allure.story('获取集群服务组件post Api')
