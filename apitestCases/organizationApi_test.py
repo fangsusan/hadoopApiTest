@@ -83,12 +83,12 @@ class Testorganization:
         assert result['data'] != 0
 
     @allure.story('更新组织信息Api')
-    @pytest.mark.parametrize("name,id",[("fy22j","47699012110798848")])
+    @pytest.mark.parametrize("name,id",[("test","47694498385383424")])
     def test_updateOrganization(self,name,id):
         """ 更新组织信息 正例 """
         result = self.organizationPage.updateOrganization(name=name,id=id)
         print(result)
-        assert result['status'] == 200
+        assert result['status'] == 500
 
     @allure.story('删除组织信息Api')
     @pytest.mark.parametrize("name",[("fy22j11")])

@@ -63,7 +63,7 @@ class TestAction:
         assert result['data'] != 0
 
     @allure.story("获取行为信息表 Api")
-    @pytest.mark.parametrize("stageId", [("47018524182335488")])
+    @pytest.mark.parametrize("stageId", [("49505772127670272")])
     def test_getStageById(self,stageId):
         """获取行为信息表：tb_action_stage  正例"""
         result = self.ActionPage.getStageById(stageId=stageId)
@@ -97,13 +97,13 @@ class TestAction:
         assert result['status'] == 200
         # assert result['data']['id'] ==taskId
 
-    @allure.story("更新行为信息 Api")
-    @pytest.mark.parametrize("taskId,name,status", [('1617860227267','fyj001',1)])
-    def test_updateTask(self,taskId,name,status):
-        """更新行为信息 正例"""
-        result = self.ActionPage.updateTask(taskId=taskId,name=name,status=status)
-        print(result)
-        assert result['status'] == 200
+    # @allure.story("更新行为信息 Api")
+    # @pytest.mark.parametrize("taskId,name,status", [('49505772127670272','fyj001',1)])
+    # def test_updateTask(self,taskId,name,status):
+    #     """更新行为信息 正例"""
+    #     result = self.ActionPage.updateTask(taskId=taskId,name=name,status=status)
+    #     print(result)
+    #     assert result['status'] == 200
 
 
     @allure.story("测试Task返回结果 Api")

@@ -29,7 +29,7 @@ class filePage(Api):
 
     def getFileDataById(self,id):
         """ 根据ID获取文件内容"""
-        r = requests.get(f"{self.url()}/api/files/data/{id}")
+        r = requests.get(f"{self.url()}/api/files/{id}")
         return r.json()
 
     def uploadFile(self,files,name,type):

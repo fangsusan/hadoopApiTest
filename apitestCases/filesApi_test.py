@@ -9,7 +9,7 @@ class TestFiles:
     def setup(self):
         self.filePage = filePage()
         self.file = {'file': open('C:\\Users\\admin\\Desktop\\test.txt', 'rb')}
-        self.name = "FWitt"
+        self.name = "Wit_1.3_CentOS001.zip"
         self.type = "txt"
 
     def teardown(self):
@@ -34,14 +34,13 @@ class TestFiles:
     @allure.story("根据条件name获取文件总数 Api")
     def test_queryFilesCount(self):
         """根据条件name获取文件总数  正例"""
-
         result = self.filePage.queryFilesCount(name=self.name)
         print(result)
         assert result["status"] == 200
         assert result['data'] !=0
 
     @allure.story("根据ID获取文件内容 Api")
-    @pytest.mark.parametrize("id",[(47699752619364352)])
+    @pytest.mark.parametrize("id",[("45573444435202048")])
     def test_getFileDataById(self,id):
         """ 根据ID获取文件内容 正例 """
         result = self.filePage.getFileDataById(id=id)

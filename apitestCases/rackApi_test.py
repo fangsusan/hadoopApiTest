@@ -23,7 +23,7 @@ class TestStack:
         assert result['data']['name'] == name
 
 
-    @pytest.mark.parametrize("name",[("meilanzi")])
+    @pytest.mark.parametrize("name",[("fyjrack")])
     def test_getRackCount(self,name):
         """根据条件获取站点总数   正例"""
         result = self.RackPage.getRackCount(name=name)
@@ -31,7 +31,7 @@ class TestStack:
         assert result['status'] == 200
         assert result['data'] != 0
 
-    @pytest.mark.parametrize("name",[("meilanzi")])
+    @pytest.mark.parametrize("name",[("fyjrack")])
     def test_getRackByName(self,name):
         """根据名称获取机架"""
         result = self.RackPage.getRackByName(name=name)
@@ -40,7 +40,7 @@ class TestStack:
         assert result['data']['name']  == name
 
 
-    @pytest.mark.parametrize("pageNum,pageSize,name",[(1,2,"meilanzi")])
+    @pytest.mark.parametrize("pageNum,pageSize,name",[(1,2,"fyjrack")])
     def test_queryRackPage(self,pageNum,pageSize,name):
         """根据条件获取机架列表(模糊)  正例"""
         result = self.RackPage.queryRackPage(pageNum=pageNum,pageSize=pageSize,name=name)
@@ -48,7 +48,7 @@ class TestStack:
         assert result['status'] == 200
         assert result['data']['list'][0]['name'] == name
 
-    @pytest.mark.parametrize("name",[("meilanzi")])
+    @pytest.mark.parametrize("name",[("fyjrack")])
     def test_queryRacks(self,name):
         """根据条件获取机架列表(模糊查询) 正例"""
         result = self.RackPage.queryRacks(name=name)
@@ -57,7 +57,7 @@ class TestStack:
         assert result['data'][0]['name'] == name
 
 
-    @pytest.mark.parametrize("id",[("39665475319246848")])
+    @pytest.mark.parametrize("id",[("45518188372316160")])
     def test_getRackById(self,id):
         """根据ID获取机架   正例"""
         result = self.RackPage.getRackById(id=id)

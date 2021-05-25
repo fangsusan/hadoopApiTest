@@ -27,14 +27,14 @@ class Testresource:
         assert r['status'] == 200
         assert r['data'][0]['name'] == name
 
-    @allure.story("添加资源 Api")
-    @pytest.mark.parametrize("name",[("meila1nzi")])
-    def test_addResource(self,name):
-        """添加资源  正例"""
-        r = self.ResourcePage.addResource(name=name)
-        print(r)
-        assert r['status'] == 200
-        # assert r['data'][0]['name'] == name
+    # @allure.story("添加资源 Api")
+    # @pytest.mark.parametrize("name",[("meila1nzi")])
+    # def test_addResource(self,name):
+    #     """添加资源  正例"""
+    #     r = self.ResourcePage.addResource(name=name)
+    #     print(r)
+    #     assert r['status'] == 200
+    #     # assert r['data'][0]['name'] == name
 
     @allure.story("根据条件获取资源总数 Api")
     @pytest.mark.parametrize("name",[("WIT")])
@@ -73,16 +73,16 @@ class Testresource:
         r = self.ResourcePage.updateResource(id=id,name=name)
         assert r['status'] == 200
 
-    @allure.story("根据ID删除资源 Api")
-    @pytest.mark.parametrize("name", [("meilanzi")])
-    def test_deleteResource(self,name):
-        """根据ID删除资源  正例"""
-        try:
-            self.ResourcePage.queryResources(name=name)
-        finally:
-            pre = self.ResourcePage.addResource(name=name)
-            id = pre['data']['id']
-        r = self.ResourcePage.deleteResource(id=id)
-        assert r['status'] == 200
+    # @allure.story("根据ID删除资源 Api")
+    # @pytest.mark.parametrize("name", [("meilanzi")])
+    # def test_deleteResource(self,name):
+    #     """根据ID删除资源  正例"""
+    #     try:
+    #         self.ResourcePage.queryResources(name=name)
+    #     finally:
+    #         pre = self.ResourcePage.addResource(name=name)
+    #         id = pre['data']['id']
+    #     r = self.ResourcePage.deleteResource(id=id)
+    #     assert r['status'] == 200
 
 

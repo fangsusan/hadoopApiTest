@@ -98,10 +98,10 @@ class clusterPage(Api):
         r = requests.get(f"{self.url()}/api/clusters/{id}")
         return r.json()
 
-    def updateCluster(self, id):
+    def updateCluster(self,name,id):
         """ 更新集群信息 """
         data = {
-
+            "name":name,
         }
         r = requests.post(f"{self.url()}/api/clusters/{id}",json=data)
         return r.json()

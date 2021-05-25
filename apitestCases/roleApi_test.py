@@ -35,7 +35,7 @@ class Testrole:
 
 
     @allure.story("根据角色名称获取角色总数Api")
-    @pytest.mark.parametrize('name',[("meilanzi010")])
+    @pytest.mark.parametrize('name',[("leader")])
     def test_countByName(self,name):
         """ 根据角色名称获取角色总数 """
         result = self.rolePage.countByName(name=name)
