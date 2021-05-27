@@ -105,6 +105,13 @@ class TestAction:
     #     print(result)
     #     assert result['status'] == 200
 
+    @allure.story("测试监控信息 Api")
+    @pytest.mark.parametrize("time",[(1622078815)])
+    def test_testActionMonitor(self,time):
+        """测试监控信息 正例"""
+        result = self.ActionPage.testActionMonitor(time=time)
+        assert result['status'] == 200
+
 
     @allure.story("测试Task返回结果 Api")
     @pytest.mark.parametrize("id",[(49498792210223105)])

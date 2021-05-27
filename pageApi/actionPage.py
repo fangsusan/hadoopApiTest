@@ -88,6 +88,15 @@ class ActionPage(Api):
         r = requests.post(f'{self.url()}/api/actions/tasks/{taskId}',json=data)
         return r.json()
 
+    def testActionMonitor(self,time):
+        """ 测试监控信息"""
+        hostMonitorConsumerDTO = {
+            "time":time
+        }
+        r = requests.post(f"{self.url()}/api/actions/test/monitor",json=hostMonitorConsumerDTO)
+        return r.json()
+
+
     def testActionTaskResponse(self,id):
         """测试Task返回结果"""
         taskConsumerDTO = {
@@ -96,7 +105,8 @@ class ActionPage(Api):
         r = requests.post(f"{self.url()}/api/actions/test/response",json=taskConsumerDTO)
         return r.json()
 
-    def getActionById(self, taskId):
+
+    def getActionById(self,taskId):
         """获取行为信息"""
         r = requests.get(f'{self.url()}/api/actions/tasks/{taskId}')
         return r.json()
