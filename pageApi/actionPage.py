@@ -88,18 +88,12 @@ class ActionPage(Api):
         r = requests.post(f'{self.url()}/api/actions/tasks/{taskId}',json=data)
         return r.json()
 
-    def testActionTaskResponse(self,):
+    def testActionTaskResponse(self,id):
         """测试Task返回结果"""
         taskConsumerDTO = {
-                          "id": 0,
-                          "result": {
-                            "info": "string",
-                            "message": "string",
-                            "status": 0
-                          },
-                          "type": "string"
+                          "id": id,
                         }
-        r = requests.post(f"{self.url()}/api/actions/test",json=taskConsumerDTO)
+        r = requests.post(f"{self.url()}/api/actions/test/response",json=taskConsumerDTO)
         return r.json()
 
     def getActionById(self, taskId):

@@ -107,9 +107,10 @@ class TestAction:
 
 
     @allure.story("测试Task返回结果 Api")
-    def test_testActionTaskResponse(self):
+    @pytest.mark.parametrize("id",[(49498792210223105)])
+    def test_testActionTaskResponse(self,id):
         """测试Task返回结果"""
-        result = self.ActionPage.testActionTaskResponse()
+        result = self.ActionPage.testActionTaskResponse(id=id)
         assert result['status'] == 200
 
     @allure.story("获取行为信息 Api")
