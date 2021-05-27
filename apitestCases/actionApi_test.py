@@ -89,7 +89,7 @@ class TestAction:
         assert result['data'] != 0
 
     @allure.story("获取行为信息 Api")
-    @pytest.mark.parametrize("taskId", [('1617860227267')])
+    @pytest.mark.parametrize("taskId", [('49498792210223105')])
     def test_getTaskById(self,taskId):
         """获取行为信息   正例"""
         result = self.ActionPage.getTaskById(taskId=taskId)

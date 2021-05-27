@@ -144,7 +144,7 @@ class Testcluster:
         result = self.clusterPage.getClusterById(id=id)
         print(result)
         assert result['status'] == 200
-        assert result['data']['id']  == id
+
 
     @allure.story('更新集群信息 Api')
     @pytest.mark.parametrize("id,name", [("49879018303934464","newname")])

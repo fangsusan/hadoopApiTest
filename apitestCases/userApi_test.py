@@ -43,7 +43,6 @@ class Testuser:
         print(result)
         assert result['status'] == 200
 
-
     @allure.story("获取用户总数 正例")
     def test_countAll(self):
         """ 获取用户总数 正例"""
