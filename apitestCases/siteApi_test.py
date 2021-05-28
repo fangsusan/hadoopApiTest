@@ -6,10 +6,10 @@ from pageApi.sitePage import SitePage
 @allure.feature("站点管理接口")
 class TestSite():
     """ 站点管理接口"""
-    def setup(self):
+    def setup_class(self):
         self.SitePage = SitePage()
 
-    def teardown(self):
+    def teardown_class(self):
         pass
 
     @allure.story("获取所有站点 Api")
@@ -85,10 +85,15 @@ class TestSite():
     @allure.story("更新站点 Api")
     def test_updatesite(self):
         """更新站点  正例"""
-        updatename = "meilanzi"
-        id = "39664501213114368"
-        result = self.SitePage.updatesite(id=id,name=updatename)
-        print(result)
+
+        pre = self.SitePage.addsite(name="fang001")
+        print(pre)
+        id = pre['data']['id']
+        result = self.SitePage.updatesite(id=id,name="meilanzi")
+        try:
+            self.SitePage.getSiteById(id=id)
+        finally:
+            self.SitePage.deleteSite(id=id)
         assert result["status"] == 200
 
     @allure.story("删除站点 Api")
