@@ -31,6 +31,7 @@ class Testuser:
         assert result['status'] == 200
         assert result['data'] != 0
 
+
     @allure.story('添加用户信息 正例')
     def test_insert(self):
         """ 添加用户信息admin登录 正例"""
