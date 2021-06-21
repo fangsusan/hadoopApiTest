@@ -110,7 +110,7 @@ class Testuser:
     # @pytest.mark.parametrize("id,realname,phone,email", [("50527843863515136","fangj",18768466308,"123456789@qq.com")])
     def test_updateUser(self):
         """ 更新用户信息 正例"""
-        pre = self.userPage.insert(name=random_name(9),phone=random_phone(11),email="1234@qq.com",username=random_name(11),password=123456)
+        pre = self.userPage.insert(name=random_name(8),phone=random_phone(11),email="1234@qq.com",username=random_name(10),password=123456)
         print(pre)
         id = pre['data']['id']
         result = self.userPage.updateUser(id=id,realname=random_name(8),phone=random_phone(11),email="11111@qq.com")
